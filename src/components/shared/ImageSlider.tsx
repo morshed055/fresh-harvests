@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-// Define the type for the `images` prop
+
 interface ImageSliderProps {
-  images: string[]; // Array of image URLs (strings)
+  images: string[]; )
 }
 
 const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  // Function to navigate to a specific slide
+  
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
@@ -31,7 +31,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
               width={300}
               height={300}
               className="rounded-lg mx-auto"
-              priority={index === 0} // Prioritize loading the first image
+              priority={index === 0} 
             />
           </div>
         ))}
@@ -46,7 +46,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
             className={`w-3 h-3 rounded-full ${
               currentIndex === index ? 'bg-green-700' : 'bg-gray-300'
             }`}
-            aria-label={`Go to slide ${index + 1}`} // Improve accessibility
+            aria-label={`Go to slide ${index + 1}`} 
           ></button>
         ))}
       </div>

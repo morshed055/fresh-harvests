@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useGetAllCategoriesQuery } from '@/redux/api/categoryApi';
 import { useGetAllProductsQuery } from '@/redux/api/productApi';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Import useRouter for navigation
+import { useRouter } from 'next/navigation'; 
 import Product_card from '@/components/shared/Product_card';
 
 const page = () => {
   const { data: category, error: categoryError, isLoading: isCategoryLoading } = useGetAllCategoriesQuery({});
   const { data: product, error: productError, isLoading: isProductLoading } = useGetAllProductsQuery({});
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter(); 
   console.log(product);
 
   // Handle loading state

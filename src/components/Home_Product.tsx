@@ -1,14 +1,22 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { useGetAllCategoriesQuery } from '@/redux/api/categoryApi';
-import { useGetAllProductsQuery } from '@/redux/api/productApi';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Import useRouter for navigation
-import Product_card from './shared/Product_card';
+"use client";
+import React, { useState, useEffect } from "react";
+import { useGetAllCategoriesQuery } from "@/redux/api/categoryApi";
+import { useGetAllProductsQuery } from "@/redux/api/productApi";
+import Image from "next/image";
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
+import Product_card from "./shared/Product_card";
 
 const Home_Product = () => {
-  const { data: category, error: categoryError, isLoading: isCategoryLoading } = useGetAllCategoriesQuery({});
-  const { data: product, error: productError, isLoading: isProductLoading } = useGetAllProductsQuery({});
+  const {
+    data: category,
+    error: categoryError,
+    isLoading: isCategoryLoading,
+  } = useGetAllCategoriesQuery({});
+  const {
+    data: product,
+    error: productError,
+    isLoading: isProductLoading,
+  } = useGetAllProductsQuery({});
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const router = useRouter(); // Initialize useRouter
   console.log(product);
@@ -16,7 +24,7 @@ const Home_Product = () => {
   // Set the default active tab to "ALL"
   useEffect(() => {
     if (category?.data?.length > 0 && !activeTab) {
-      setActiveTab('ALL');
+      setActiveTab("ALL");
     }
   }, [category, activeTab]);
 
@@ -31,9 +39,10 @@ const Home_Product = () => {
   }
 
   // Filter products by the active category or show all products if "ALL" is selected
-  const filteredProducts = activeTab === 'ALL'
-    ? product?.data
-    : product?.data.filter((prod: any) => prod.categoryId === activeTab);
+  const filteredProducts =
+    activeTab === "ALL"
+      ? product?.data
+      : product?.data.filter((prod: any) => prod.categoryId === activeTab);
 
   // Show only the first 6 products
   const displayedProducts = filteredProducts?.slice(0, 8);
@@ -59,11 +68,11 @@ const Home_Product = () => {
             {/* "ALL" Tab */}
             <button
               key="ALL"
-              onClick={() => setActiveTab('ALL')}
+              onClick={() => setActiveTab("ALL")}
               className={`px-4 py-2 text-sm font-medium border rounded-md ${
-                activeTab === 'ALL'
-                  ? 'text-white border-b-2 border-[#749B3F] bg-[#749B3F]' // Active tab styles
-                  : 'text-gray-500 hover:text-gray-700' // Inactive tab styles
+                activeTab === "ALL"
+                  ? "text-white border-b-2 border-[#749B3F] bg-[#749B3F]" // Active tab styles
+                  : "text-gray-500 hover:text-gray-700" // Inactive tab styles
               }`}
             >
               ALL
@@ -76,8 +85,8 @@ const Home_Product = () => {
                 onClick={() => setActiveTab(cat.id)}
                 className={`px-4 py-2 text-sm font-medium border rounded-md ${
                   activeTab === cat.id
-                    ? ' border-b-2 border-[#749B3F] bg-[#749B3F] text-white' // Active tab styles
-                    : 'text-gray-500 hover:text-gray-700' // Inactive tab styles
+                    ? " border-b-2 border-[#749B3F] bg-[#749B3F] text-white" // Active tab styles
+                    : "text-gray-500 hover:text-gray-700" // Inactive tab styles
                 }`}
               >
                 {cat.categoryName}
@@ -89,13 +98,11 @@ const Home_Product = () => {
           <div className="mt-4">
             {activeTab && (
               <div>
-                
                 {displayedProducts?.length > 0 ? (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
                     {displayedProducts.map((prod: any, index: number) => (
-                   
                       <>
-                      <Product_card product={prod} />
+                        <Product_card product={prod} />
                       </>
                     ))}
                   </div>
@@ -107,7 +114,7 @@ const Home_Product = () => {
                 {filteredProducts?.length > 6 && (
                   <div className="flex justify-center mt-8">
                     <button
-                      onClick={() => router.push('/product')} // Redirect to /products route
+                      onClick={() => router.push("/product")} // Redirect to /products route
                       className="text-[#749B3F] border-2  rounded-lg hover:bg-[#FF6A1A] hover:text-white transition-colors font-semibold text-lg w-[203px] h-[53px]"
                     >
                       See All Products

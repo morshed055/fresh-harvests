@@ -2,7 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useGetProductByIdQuery } from '@/redux/api/productApi';
 import { useGetAllProductsQuery } from '@/redux/api/productApi';
-import { useGetCategoryByIdQuery } from '@/redux/api/categoryApi'; // Import the category query hook
+import { useGetCategoryByIdQuery } from '@/redux/api/categoryApi';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import ImageSlider from '@/components/shared/ImageSlider';
@@ -22,7 +22,7 @@ const Page = () => {
     return <div>Loading...</div>;
   }
 
-  // Handle error state
+//  Handle error state
   if (productError || allProductsError || categoryError) {
     return <div>Error loading data.</div>;
   }

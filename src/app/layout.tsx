@@ -12,8 +12,8 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: 'My Next.js App',
-  description: 'A Next.js app with RTK Query, Tailwind CSS, and shadcn/ui',
+  title: 'fresh-harvests',
+  description: 'Fresh Harvests',
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={rubik.variable}>
         <Providers>
-          <div className='max-w-[1440px] mx-auto'>
+          <div className='max-w-[1440px] mx-auto overflow-hidden'>
 
           {children}
           </div>

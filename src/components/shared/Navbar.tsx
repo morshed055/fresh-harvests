@@ -1,16 +1,16 @@
-"use client"; // Required for using React hooks in Next.js
+"use client"; 
 
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import Logo from "../../../public/image/Logo.png";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // Import Lucide icons
-import { Button } from "@/components/ui/button"; // Import shadcn Button
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"; // Import shadcn Dialog
-import { Input } from "@/components/ui/input"; // Import shadcn Input
-import { Label } from "@/components/ui/label"; // Import shadcn Label
-import toast from "react-hot-toast"; // Import react-hot-toast
+import { Menu, X } from "lucide-react"; 
+import { Button } from "@/components/ui/button"; 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input"; 
+import { Label } from "@/components/ui/label"; 
+import toast from "react-hot-toast"; 
 import { useLoginUserMutation, useLogoutUserMutation, useRegisterUserMutation } from "@/redux/api/authApi";
 
 const Navbar = () => {
@@ -20,8 +20,7 @@ const Navbar = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [fullName, setFullName] = useState<string>("");
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // Track login state
-
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); 
   // RTK Query Mutations
   const [loginUser, { isLoading: isLoginLoading }] = useLoginUserMutation();
   const [registerUser, { isLoading: isRegisterLoading }] = useRegisterUserMutation();
@@ -34,17 +33,17 @@ const Navbar = () => {
   const handleLogin = async () => {
     try {
       const credentials = { email, password };
-      const response = await loginUser(credentials).unwrap(); // Use RTK Query mutation
+      const response = await loginUser(credentials).unwrap(); 
 
       if (response.success) {
         setIsLoggedIn(true);
         setIsLoginModalOpen(false);
-        toast.success("Login Successful"); // Show success toast
+        toast.success("Login Successful"); 
       } else {
-        toast.error(response.message || "Invalid email or password."); // Show error toast
+        toast.error(response.message || "Invalid email or password."); 
       }
     } catch (error) {
-      toast.error("An error occurred while logging in."); // Show error toast
+      toast.error("An error occurred while logging in."); 
     }
   };
 
@@ -56,16 +55,15 @@ const Navbar = () => {
         password,
       };
 
-      const response = await registerUser(userData).unwrap(); // Use RTK Query mutation
-
+      const response = await registerUser(userData).unwrap(); 
       if (response.success) {
         setIsRegisterModalOpen(false);
-        toast.success("Registration Successful. Please log in."); // Show success toast
+        toast.success("Registration Successful. Please log in."); 
       } else {
-        toast.error(response.message || "Registration failed. Please try again."); // Show error toast
+        toast.error(response.message || "Registration failed. Please try again."); 
       }
     } catch (error) {
-      toast.error("An error occurred while registering."); // Show error toast
+      toast.error("An error occurred while registering."); 
     }
   };
 
@@ -78,18 +76,16 @@ const Navbar = () => {
         throw new Error("No token found.");
       }
   
-      // Pass the token as an argument to the logoutUser mutation
-      await logoutUser({ token }).unwrap(); // Use RTK Query mutation
-      setIsLoggedIn(false);
-      localStorage.removeItem("token"); // Clear the token from local storage
-      toast.success("You have successfully logged out."); // Show success toast
-    } catch (error) {
-      toast.error("An error occurred while logging out."); // Show error toast
+    
+      await logoutUser({ token }).unwrap(); 
+      localStorage.removeItem("token"); 
+      toast.success("You have successfully logged out."); 
+      toast.error("An error occurred while logging out."); 
     }
   };
 
   return (
-    <nav className="flex items-center justify-between p-6 h-[100px] relative w-full md:max-w-[1200px] md:mx-auto">
+    <nav className="flex items-center justify-between p-6 h-[100px] z-50 relative w-full md:max-w-[1200px] md:mx-auto">
       {/* Logo */}
       <div className="text-2xl font-bold text-green-700 cursor-pointer">
         <Link href="/" legacyBehavior passHref>

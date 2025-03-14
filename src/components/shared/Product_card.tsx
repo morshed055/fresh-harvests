@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button } from '../ui/button';
-import Link from 'next/link'; // Import Link from next/link
+import Link from 'next/link'; 
 
-// Define the type for the `product` prop
+
 interface Product {
   id: string;
   images: string[];
@@ -25,7 +25,7 @@ const Product_card: React.FC<ProductCardProps> = ({ product }) => {
         <Link href={`/product/${product?.id}`} passHref>
           <div className="cursor-pointer">
             <Image
-              src={product?.images[0] || '/placeholder.png'} // Fallback image if images[0] is undefined
+              src={product?.images[0] || '/placeholder.png'} 
               alt={product?.productName || 'Product Image'}
               width={300}
               height={208}
